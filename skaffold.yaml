@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: mynginx
+deploy:
+  kubectl:
+    manifests:
+    - configs/secret.yaml
+    - configs/config.yaml
+    - configs/deployment.yaml
+    - configs/service.yaml
+    - configs/mysql-configmap.yaml
+    - configs/mysql-pv.yaml
+    - configs/mysql-pvc.yaml
+    - configs/mysql-ss.yaml
+    - configs/mysql-service.yaml
+    - configs/ingress.yaml
+
