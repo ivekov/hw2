@@ -41,16 +41,19 @@ $app->get('/curl/', function (Request $request, Response $response) {
 });
 
 $app->get('/test/', function() {
-	/* Подключение к базе данных MySQL с помощью вызова драйвера */
-	$dsn = 'mysql:dbname=mysql;host=mysql';
-	$user = 'root';
-	$password = 'Y29uZmx1ZW5jZXBhc3N3b3Jk';
+	$link = mysqli_connect("mysql-service", "root", "admin", "mysql");
 
-	try {
-		$dbh = new PDO($dsn, $user, $password);
-	} catch (PDOException $e) {
-		echo 'Подключение не удалось: ' . $e->getMessage();
+	if (!$link) {
+		echo "Ошибка: Невозможно установить соединение с MySQL." . PHP_EOL;
+		echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
+		echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
+		exit;
 	}
+
+	echo "Соединение с MySQL установлено!" . PHP_EOL;
+	echo "Информация о сервере: " . mysqli_get_host_info($link) . PHP_EOL;
+
+	mysqli_close($link);
 });
 
 $app->get('/db/', function (Request $request, Response $response) {
@@ -89,10 +92,10 @@ class ORM
     }
 
     protected function dbConnect(){
-        $host='127.0.0.1:3306';
-        $user='crud';
-        $pass='Y29uZmx1ZW5jZXBhc3N3b3Jk';
-        $dbname='mainDb';
+        $host='mysql-service';
+        $user='root';
+        $pass='admin';
+        $dbname='mysql';
         $pdo= new PDO("mysql:host=$host; dbname=$dbname", $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

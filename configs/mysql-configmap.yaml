@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mysql
+  name: mysql-conf
   labels:
     app: my-php-app
 data:

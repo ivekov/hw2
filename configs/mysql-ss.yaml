@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
+  name: mysql-ss
 spec:
   selector:
     matchLabels:
       app: my-php-app
-  serviceName: mysql
+  serviceName: mysql-service
   replicas: 1
   template:
     metadata:
@@ -32,3 +32,6 @@ spec:
       - name: mysql-vm
         persistentVolumeClaim:
           claimName: mysql-pvc
+      - name: config-volume
+        configMap:
+          name: mysql-conf

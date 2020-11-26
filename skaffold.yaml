@@ -15,4 +15,5 @@ deploy:
     - configs/mysql-ss.yaml
     - configs/mysql-service.yaml
     - configs/ingress.yaml
+    - configs/phpmyadmin.yaml
 
