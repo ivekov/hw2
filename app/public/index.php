@@ -92,7 +92,7 @@ class ORM
     }
 
     protected function dbConnect(){
-        $host='mysql-service';
+        $host='myapp-mysql';
         $user='root';
         $pass='admin';
         $dbname='mysql';

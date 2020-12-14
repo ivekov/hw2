@@ -32,7 +32,7 @@ spec:
             cpu: 100m
         env:
         - name: PMA_HOST
-          value: mysql-service #<<<--- mysql service 
+          value: myapp-mysql #<<<--- mysql service 
 ---
 apiVersion: v1
 kind: Service
