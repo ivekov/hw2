@@ -71,6 +71,8 @@ tolerations: []
 
 affinity: {}
 
+
+#CREATE TABLE `mysql`. ( `id` INT(32) NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `email` VARCHAR(255) NOT NULL , `date` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 mysql:
   master:
     fullname: myapp-mysql
@@ -82,4 +84,4 @@ mysql:
   initdbScripts:
     my_init_script.sh: |
       #!/bin/sh
-      mysql -P 3306 -uroot -padmin -e "create database new_database";
+      mysql -P 3306 --database=mysql -uroot -padmin -e "create table app_users ( id INT(32) NOT NULL AUTO_INCREMENT , name VARCHAR(255) NOT NULL , email VARCHAR(255) NOT NULL , date TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) , PRIMARY KEY (id))";
