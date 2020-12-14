@@ -24,6 +24,7 @@ spec:
       containers:
         - name: backend
           image: nginx
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
           volumeMounts:
@@ -34,7 +35,7 @@ spec:
               subPath: nginx.conf
           env:
             - name: DB_HOST
-              value: mysql
+              value: my-app-mysql
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -42,6 +43,7 @@ spec:
                   key: password
         - name: php-fpm
           image: ivekov/php-fpm
+          imagePullPolicy: Never
           volumeMounts:
             - name: app-files
               mountPath: /var/www/html
