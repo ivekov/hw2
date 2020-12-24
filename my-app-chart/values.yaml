@@ -96,3 +96,8 @@ grafana:
     user: admin
     password: admin
     existingSecret: mysql-pass
+
+kube-prometheus:
+  prometheus:
+    service:
+      type: NodePort

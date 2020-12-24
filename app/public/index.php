@@ -14,7 +14,7 @@ $c = new \Slim\Container($configuration);
 $app = new \Slim\App($c);
 
 $app->get('/', function (Request $request, Response $response) {
-    $response->withStatus(200)->write("Api Webgate v1");
+    $response->withStatus(200)->write("Api Webgate v1.1");
     return $response;
 });
 
@@ -39,6 +39,12 @@ $app->get('/curl/', function (Request $request, Response $response) {
     $response->withStatus(200)->write($html);
     return $response;
 });
+
+$app->get('/metrics', function (Request $request, Response $response) {
+    $response->withStatus(200)->write("v1");
+    return $response;
+});
+
 
 $app->get('/test/', function() {
 	$link = mysqli_connect("mysql-service", "root", "admin", "mysql");
