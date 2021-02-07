@@ -75,6 +75,8 @@ $app->get('/db/', function (Request $request, Response $response) {
         case 'Delete':
             $db->delete($params['id']);
             break;
+        default:
+        $db->arResult = "Do you know the way?";
     };
 	$newResponse = $response->withJson($db->arResult);
     return $newResponse;

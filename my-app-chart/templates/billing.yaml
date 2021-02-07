@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: billing
+  name: billing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: billing
+  template:
+    metadata:
+      labels:
+        k8s-app: billing
+    spec:
+      containers:
+        - name: billing
+          image: valleedelisle/open-source-billing
+          imagePullPolicy: IfNoTPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: billing
+  name: billing
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 33000
+  selector:
+    app: billing
+  type: NodePort
+  selector:
+    k8s-app: billing

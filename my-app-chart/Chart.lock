@@ -8,5 +8,8 @@ dependencies:
 - name: grafana
   repository: https://grafana.github.io/helm-charts
   version: 6.0.0
-digest: sha256:d0a75bab92143c2caf6c5fcf486073c8220670f736b2a9f395f2bae4217b32de
-generated: "2020-12-15T00:14:08.516870432+03:00"
+- name: oauth2-proxy
+  repository: https://k8s-at-home.com/charts/
+  version: 4.3.0
+digest: sha256:828ee58c1835d04db4df04e49515b53a5172df803300421738076d4037f79bc9
+generated: "2021-02-05T00:52:29.290771568+03:00"
